@@ -1,0 +1,26 @@
+version: '3.8'
+
+networks:
+  my_network:   # Tạo một network chung
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: my_mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    networks:
+      - my_network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin_container
+    restart: always
+    environment:
+      PMA_HOST: my_mysql  # Đúng với tên container MySQL
+      PMA_PORT: 3306
+    ports:
+      - "8081:80"
+    networks:
+      - my_network
