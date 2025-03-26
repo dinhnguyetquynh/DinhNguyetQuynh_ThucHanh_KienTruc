@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0   # Sử dụng MySQL phiên bản 8.0
+    container_name: my_mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword  # Mật khẩu cho user root
+      MYSQL_USER: user                   # Tạo user mới
+      MYSQL_PASSWORD: password           # Mật khẩu cho user mới
+      MYSQL_DATABASE: mydb                # Database mặc định
+    ports:
+      - "3306:3306"  # Mở cổng 3306 trên máy host
+    volumes:
+      - mysql_data:/var/lib/mysql  # Lưu trữ dữ liệu MySQL
+
+volumes:
+  mysql_data:
