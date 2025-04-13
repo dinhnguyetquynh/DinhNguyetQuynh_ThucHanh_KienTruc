@@ -19,12 +19,12 @@ public class CustomerService {
         return repo.save(o);
     }
 
-    public void deleteCustomer(long id){
+    public String deleteCustomer(long id){
         try {
             repo.deleteById(id);
-            System.out.println("Xoa thanh cong");
+           return "Xoa thanh cong";
         }catch(RuntimeException ex){
-            throw new RuntimeException("Delete failed");
+            return "Xoa khong thanh cong";
         }
     }
 
